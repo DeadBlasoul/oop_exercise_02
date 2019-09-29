@@ -1,0 +1,4 @@
+set(CMAKE_CXX_STANDARD 17)
+
+set(Lab_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include)
+
