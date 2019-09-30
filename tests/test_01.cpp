@@ -8,10 +8,10 @@ typedef Complex C;
 TEST(TEST_SUIT_NAME, Addition) {
     ASSERT_TRUE((1 + 2_i) + (2 + 3_i) == (3 + 5_i));
     ASSERT_TRUE((0 + 0_i) + (2 + 3_i) == (2 + 3_i));
-    ASSERT_TRUE(( 7 + 2_i ) + (2 + 3_i) == (9 + 5_i));
-    ASSERT_TRUE((C{ -5, 6 } + C{ 2, 3 } == C{-3, 9}));
-    ASSERT_TRUE((C{ 9, 10 } + C{ 2, 3 } == C{11, 13}));
-    ASSERT_TRUE((0 + -20_i) + ( 2 + 3_i ) == (2 + -17_i));
+    ASSERT_TRUE((7 + 2_i) + (2 + 3_i) == (9 + 5_i));
+    ASSERT_TRUE((-5 + 6_i) + (2 + 3_i) == (-3 + 9_i));
+    ASSERT_TRUE((9 + 10_i) + (2 + 3_i) == (11 + 13_i));
+    ASSERT_TRUE((0 + -20_i) + (2 + 3_i) == (2 + -17_i));
 }
 
 TEST(TEST_SUIT_NAME, Subtitution) {
