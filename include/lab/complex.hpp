@@ -53,6 +53,10 @@ public:
         return tmp;
     }
 
+    Complex operator/(const double deno) const noexcept {
+        return Complex{ re / deno, im / deno };
+    }
+
     Complex& operator+=(const Complex& other) noexcept {
         Add(other);
         return *this;
@@ -73,15 +77,12 @@ public:
         return *this;
     }
 
-    bool operator==(const Complex& other) noexcept {
-        double thisMod = this->Mod();
-        double otherMod = other.Mod();
+    Complex& operator/=(const double deno) noexcept {
+        return *this = *this / deno;
+    }
 
-        return (thisMod < otherMod)
-            ? -1
-            : (thisMod == otherMod
-                ? 0
-                : 1);
+    bool operator==(const Complex& other) noexcept {
+        return (re == other.re) && (im == other.im);
     }
 
     double& operator[](size_t ix) {
@@ -109,14 +110,16 @@ private:
     }
 
     void Mul(const Complex& other) noexcept {
-        this->re = this->re * other.re - this->im * other.im;
-        this->im = this->re * other.im + this->im * other.re;
+        double re = this->re * other.re - this->im * other.im;
+        double im = this->re * other.im + this->im * other.re;
+        this->re = re;
+        this->im = im;
     }
 
     void Div(const Complex& other) noexcept {
         double denominator = (other * other.Conj()).re;
         Complex numerator = *this * other.Conj();
-        *this = Complex{ numerator.re / denominator, numerator.im / denominator };
+        *this = numerator / denominator;
     }
 
     bool Equ(const Complex& other) noexcept {

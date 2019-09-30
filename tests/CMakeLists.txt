@@ -26,9 +26,9 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
 # The gtest/gtest_main targets carry header search path
 # dependencies automatically when using CMake 2.8.11 or
 # later. Otherwise we have to add them here ourselves.
-if (CMAKE_VERSION VERSION_LESS 2.8.11)
-    include_directories("${gtest_SOURCE_DIR}/include")
-endif()
+# if (CMAKE_VERSION VERSION_LESS 2.8.11)
+#     include_directories("${gtest_SOURCE_DIR}/include")
+# endif()
 
 foreach(GLIB gmock gmock_main gtest gtest_main)
     set_target_properties(${GLIB} PROPERTIES
@@ -46,11 +46,11 @@ foreach(TEST_FILE ${TEST_FILES})
     get_filename_component(TEST_NAME ${TEST_FILE}
                            NAME_WE)
 
-    add_executable(${TEST_NAME} ${TEST_FILE})
+    add_executable(${TEST_NAME}_exec ${TEST_FILE})
 
-    target_link_libraries(${TEST_NAME} gtest_main)
-    set_target_properties(${TEST_NAME} PROPERTIES
+    target_link_libraries(${TEST_NAME}_exec gtest_main Lab)
+    set_target_properties(${TEST_NAME}_exec PROPERTIES
                           FOLDER tests)
 
-    add_test(NAME "${TEST_NAME}" COMMAND ${TEST_NAME})
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}_exec)
 endforeach()
