@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{multicol,multirow}
+\usepackage{tabularx}
+\usepackage{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{minted}
+
+% Оригиналный шаблон: http://k806.ru/dalabs/da-report-template-2012.tex
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\textbf{МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ РОССИЙСОЙ ФЕДЕРАЦИИ
+\medskip
+МОСКОВСКИЙ АВЦИАЦИОННЫЙ ИНСТИТУТ
+(НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЬЕЛЬСКИЙ УНИВЕРСТИТЕТ)
+\vfill\vfill
+{\Huge ЛАБОРАТОРНАЯ РАБОТА №2} 
+по курсу объектно-ориентированное программирование
+I семестр, 2019/20 уч. год}
+\end{center}
+\vfill
+
+Студент \uline{\it {Попов Данила Андреевич, группа 08-208Б-18}\hfill}
+
+Преподаватель \uline{\it {Журавлёв Андрей Андреевич}\hfill}
+
+\vfill
+\end{titlepage}
+
+\subsection*{Условие}
+
+Задание №1: написать класс, который реализует комплексное число в алгебраической форме со следующими функциями: 
+\begin{enumerate}
+\item Сложение
+\item Вычитание
+\item Умножение 
+\item Деление
+\item Сравнение
+\item Сопряжённое число
+\end{enumerate}
+
+\subsection*{Описание программы}
+
+Код программы состоит из 3-х файлов:
+\begin{enumerate}
+\item apps/main.cpp: файл, содержащий точку входа приложения
+\item include/lab/complex.hpp: файл, содержащий объявление и реализацию inline-функций
+\item src/complex.cpp: реализация не-inline методов класса Complex.h
+\end{enumerate}
+
+\subsection*{Недочёты}
+
+Метод Str() работает не с внешним буффером, а создаёт каждый раз минимум два:
+\begin{enumerate}
+\item Для std::stringstream объекта, который предоставляет удобный интерфейс приведения стандартных типов к строке.
+\item Для std::string объекта, который является возвращаемым значением.
+\end{enumerate}
+Данный метод может использовать достаточно много процессорного времени при приведении объектов типа Complex к строке.
+
+\subsection*{Выводы}
+В CMake с зависимостями очень сложно работать, в отличие от, например, системы модулей для Golang. Для того, чтобы сделать автоматическую загрузку google test, потребовалось немало часов изучения мануалов.
+\vfill
+
+\subsection*{Исходный код}
+
+{\Huge Complex.hpp}
+\inputminted
+{C++}{include/lab/complex.hpp}
+\pagebreak
+
+{\Huge Complex.cpp}
+\inputminted
+{C++}{src/complex.cpp}
+\pagebreak
+
+{\Huge main.cpp}
+\inputminted
+{C++}{apps/main.cpp}
+\pagebreak
+
+\end{document}

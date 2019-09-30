@@ -1,0 +1,8 @@
+.vs
+
+[Oo]ut
+[Bb]uild
+[Bb]in
+*minted*
+*.log
+*.aux
