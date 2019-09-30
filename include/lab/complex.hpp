@@ -3,6 +3,7 @@
 #include <cmath>
 #include <cassert>
 #include <string>
+#include <type_traits>
 #include <sstream>
 #include <ostream>
 
@@ -55,6 +56,10 @@ public:
 
     Complex operator/(const double deno) const noexcept {
         return Complex{ re / deno, im / deno };
+    }
+
+    Complex operator-() {
+        return Complex(-re, -im);
     }
 
     Complex& operator+=(const Complex& other) noexcept {
@@ -158,6 +163,39 @@ inline std::ostream& operator<<(std::ostream& out, const Complex& c) {
 inline std::istream& operator>>(std::istream& input, Complex& c) {
     c.Read(input);
     return input;
+}
+
+inline Complex operator"" _i(unsigned long long int c) {
+    return Complex{ 0, double(c) };
+}
+
+inline Complex operator"" _i(long double c) {
+    return Complex{ 0, double(c) };
+}
+
+template<typename T, class = std::enable_if_t<std::is_fundamental_v<T>>>
+Complex operator+(const T left, const Complex& right) {
+    return Complex{ double(left), 0 } + right;
+}
+
+template<typename T, class = std::enable_if_t<std::is_fundamental_v<T>>>
+Complex operator-(const T left, const Complex & right) {
+    return Complex{ double(left), 0 } - right;
+}
+
+template<typename T, class = std::enable_if_t<std::is_fundamental_v<T>>>
+Complex operator*(const T left, const Complex & right) {
+    return Complex{ double(left), 0 } * right;
+}
+
+template<typename T, class = std::enable_if_t<std::is_fundamental_v<T>>>
+Complex operator/(const T left, const Complex & right) {
+    return Complex{ double(left), 0 } / right;
+}
+
+template<typename T, class = std::enable_if_t<std::is_fundamental_v<T>>>
+bool operator==(const T left, const Complex & right) {
+    return Complex(double(left), 0) == right;
 }
 
 int Compare(const Complex& left, const Complex& right);

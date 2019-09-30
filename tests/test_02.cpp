@@ -6,12 +6,12 @@
 typedef Complex C;
 
 TEST(TEST_SUIT_NAME, Equasion) {
-    ASSERT_FALSE(C(3, 13) == C(7, -17));
-    ASSERT_TRUE(C(0, 1) == C(0, 1));
+    ASSERT_FALSE(3 + 13_i == 7 + -17_i);
+    ASSERT_TRUE(0 + 1_i == 0 + 1_i);
 }
 
 TEST(TEST_SUIT_NAME, Compare) {
-    ASSERT_EQ(Compare(C(3, 13), C(7, -17)), -1);
-    ASSERT_EQ(Compare(C(0, 1), C(0, 1)),    0);
-    ASSERT_EQ(Compare(C(0, 2), C(1, 1)),    1);
+    ASSERT_EQ(Compare(3 + 13_i, 7 + -17_i), -1);
+    ASSERT_EQ(Compare(0 + 1_i, 0 + 1_i),    0);
+    ASSERT_EQ(Compare(0 + 2_i, 1 + 1_i),    1);
 }
